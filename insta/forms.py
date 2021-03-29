@@ -9,6 +9,6 @@ class ImageForm(forms.ModelForm):
         widgets = {
             'image_name': forms.TextInput(attrs = {'class': 'form-control'}),
             'image_caption': forms.Textarea(attrs = {'class': 'form-control'}),
-            
+           
         }
         

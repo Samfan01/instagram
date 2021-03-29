@@ -5,14 +5,19 @@ from .models import Image
 
 # Create your views here.
 def home(request):
-    template_name='home.html',
+   
     title = 'My Own Instagram'
     images = Image.get_images()
-    return render(request,template_name,{'title':title},{'images':images})
+    template_name='home.html'
+    return render(request,template_name,{'title':title,'images':images})
 
 def new_post(request):
     model = Image
     form = ImageForm
+    if request.method == 'POST':
+        form = ImageForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
     template_name = 'new_post.html',
     
     return render(request,template_name,{'form':form})

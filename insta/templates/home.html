@@ -22,17 +22,32 @@
         <p class="text-center">
             <a href="{% url 'new_post' %}" class="btn btn-success btn-lg" style="color: beige; margin-top: 100px;">
                 <span class="glyphicon glyphicon-upload"></span> New Post
-              </a>
+            </a>
         </p>
     </div>
     <div class="col-md-5">
         <div class="jumbotron">
-            <h1>hello</h1>
+            
         </div>
         {% for image in images %}
+            <div class="card">
+                <h2 class="card-title">{{image.image_name}}</h2>
+                <img src="{{image.image.url}}" class="card-img-top" alt="..." height="500px" width="100%" >
+                <hr>
+                <div class="card-body">
+                    <p class="card-text"></p>
+                    <hr>
+                    <h5>Image caption : {{image.image_caption}}</h5>
+                    <hr>
+                    <h5>Posted : {{image.post_date}}</h5>
+                    <a href="" class="btn btn-primary">Read More</a>
+                    <hr>
+                </div>
+
+            </div>
+            <br>
         {% endfor %}
-    </div>
     <div class="col-md-4"></div>
 
 </div>
-    {% endblock %}
+{% endblock %}
