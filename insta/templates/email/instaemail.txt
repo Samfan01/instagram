@@ -1,0 +1,3 @@
+Hello {{name}}
+
+Welcome to InstaAge, an application with all the needs of any Photo lover covered.
