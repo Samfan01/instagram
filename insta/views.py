@@ -9,7 +9,7 @@ def home(request):
     
     return render(request,template_name,{'title':title})
 
-def add_post(request):
-    template_name = 'add_post.html',
+def new_post(request):
+    template_name = 'new_post.html',
     
-    return render = (request,template_name)
+    return render(request,template_name)
