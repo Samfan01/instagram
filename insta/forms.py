@@ -7,8 +7,8 @@ class ImageForm(forms.ModelForm):
         fields = ('image_name','image_caption','image')
         
         widgets = {
-            'image_name': form.TextInput(attrs = {'class': 'form-control'}),
-            'image_caption': form.Textarea(attrs = {'class': 'form-control'}),
-            'image': form.ImageInput(attrs = {'class': 'form-control'}),
+            'image_name': forms.TextInput(attrs = {'class': 'form-control'}),
+            'image_caption': forms.Textarea(attrs = {'class': 'form-control'}),
+            
         }
         
