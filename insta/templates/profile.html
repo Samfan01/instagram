@@ -1,1 +1,27 @@
-<h1>HELLO</h1>
+{% extends 'base.html' %}
+
+{% load bootstrap3 %}
+{% load static %}
+
+{% block styles %}
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+{% endblock %}
+
+{% block content %}
+{% include 'navbar.html' %}
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="/static/images/Facebook (5).jpg" alt="" id="prod">
+        </div>
+        <div class="col-md-8"></div>
+
+    </div>
+    <br>
+  <div ><a href="" class="btn btn-info" id="butt">Edit Profile </a></div>
+</div>
+{% endblock %}
