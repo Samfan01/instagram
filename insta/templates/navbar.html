@@ -9,13 +9,13 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
 {% endblock %}
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-fixed">
     <div class="container-fluid">
         <div class="navbar-header text-centre">
             <a class="navbar-brand" href="/"
-                style="font-family:  'Lobster', cursive; margin-left: 300px; font-size: 35px; margin-top: 10px;">Insta-Age</a>
+                style="font-family:  'Lobster', cursive; margin-left: 130px; font-size: 35px; margin-top: 10px;">Insta-Age</a>
         </div>
-        <form class="navbar-form navbar-left" action="/action_page.php" style="margin-left: 200px; margin-top: 20px;">
+        <form class="navbar-form navbar-left" action="/action_page.php" style="margin-left: 130px; margin-top: 20px;">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Search" name="search">
                 <div class="input-group-btn">
@@ -25,12 +25,37 @@
                 </div>
             </div>
         </form>
-        <ul class="nav navbar-nav" style="margin-left: 200px; margin-top: 10px;" >
-            <li class="active" ><a href="#" id="icon"><span class="glyphicon glyphicon-home"></span></a></li>
-            <li ><a href="#" id="icon"><span class="glyphicon  glyphicon-send glyphicon-lg"></span></a></li>
-            <li ><a href="#" id="icon"><span class="glyphicon glyphicon-time"></span></a></li>
-            <li ><a href="#" id="icon"><span class="glyphicon glyphicon-heart-empty"></span></a></li>
-            <img src="/static/images/Facebook (5).jpg" alt="" id="prof">
-        </ul>
+        <ul class="nav navbar-nav" style="margin-left: 200px; margin-top: 10px;">
+            <li class="active"><a href="#" id="icon"><span class="glyphicon glyphicon-home"></span></a></li>
+            <li><a href="#" id="icon"><span class="glyphicon  glyphicon-send glyphicon-lg"></span></a></li>
+            <li><a href="#" id="icon"><span class="glyphicon glyphicon-time"></span></a></li>
+            <li><a href="#" id="icon"><span class="glyphicon glyphicon-heart-empty"></span></a></li>
+            
+            {% if user.is_authenticated %}
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                        aria-expanded="false"><img src="/static/images/Facebook (5).jpg" alt="" id="prof">
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="{%url 'home'%}">Home</a>
+                        </li>
+                        <li>
+                            <a href="/accounts/password/change">Change Password</a>
+                        </li>
+                        <li>
+                            <a href="/accounts/logout/">Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            {% else %}
+            <li>
+                <a class='btn btn-default' href="/accounts/login">Login</a>
+            </li>
+
+            {% endif %}
     </div>
 </nav>
