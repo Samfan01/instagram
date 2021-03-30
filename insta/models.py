@@ -29,3 +29,17 @@ class Profile(models.Model):
     first_name = models.CharField(max_length = 30)
     last_name = models.CharField(max_length = 30)
     bio = models.TextField()
+    
+    def __str__(self):
+        return self.first_name
+    
+    class Meta:
+        ordering = ['first_name']
+        
+    def save_profile(self):
+        self.save()
+        
+    @classmethod
+    def get_profile(cls):
+        profiles = cls.objects.all()
+        return profiles
