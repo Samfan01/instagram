@@ -23,3 +23,8 @@ def new_post(request):
     template_name = 'new_post.html',
     
     return render(request,template_name,{'form':form})
+
+def profile(request):
+    template_name = 'profile.html'
+    
+    return render(request,template_name)
