@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .forms import ImageForm
-from .models import Image
+from .forms import ImageForm,ProfileForm
+from .models import Image,Profile
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -26,10 +26,41 @@ def new_post(request):
 
 def profile(request):
     template_name = 'profile.html'
+    images = Image.objects.filter(id)
     
-    return render(request,template_name)
+    return render(request,template_name,{'images':images})
 
 def update_profile(request):
-    template_name = 'update_profile.html'
+    model = Profile
+    form = ProfileForm
+    if request.method == 'POST':
+        form = ProfileForm(request.POST,request.FILES,instance=request.user.profile)
+        if form.is_valid():
+            post = form.save(commit=False)      
+            post.save()
+    else:
+        form = ProfileForm
+   
+    template_name = 'update_profile.html',
     
-    return render(request,template_name)
+    return render(request,template_name,{'form':form})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ # import pdb;pdb.set_trace()

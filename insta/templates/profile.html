@@ -16,12 +16,22 @@
 <div class="jumbotron">
     <div class="row">
         <div class="col-md-4">
-            <img src="/static/images/Facebook (5).jpg" alt="" id="prod">
+            <img src="{{user.profile.profile_pic.url}}" alt="" id="prod">
         </div>
-        <div class="col-md-8"></div>
+        <div class="col-md-8" id="inform">
+            <p><strong>First Name :</strong>{{user.profile.first_name}}</p>
+            <p><strong>Last Name :</strong>{{user.profile.last_name}}</p>
+            <p><strong>Bio :</strong>{{user.profile.bio}}</p>
+            <p><strong>followers :</strong></p>
+            <p><strong>following :</strong></p>
+
+        </div>
 
     </div>
     <br>
   <div ><a href="{% url 'update_profile' %}" class="btn btn-info" id="butt">Edit Profile </a></div>
 </div>
+{% for image in images %}
+<img src="{{image.image.url}}" alt="">
+{% endfor%}
 {% endblock %}
