@@ -7,6 +7,7 @@ from django.core.exceptions import ObjectDoesNotExist
 # Create your models here.
 
 class Image(models.Model):
+    user= models.ForeignKey(User,on_delete=models.CASCADE)
     image_name = models.CharField(max_length = 60)
     image_caption = models.TextField()
     image = models.ImageField(upload_to = 'insta/')
@@ -38,6 +39,7 @@ class Profile(models.Model):
     first_name = models.CharField(max_length = 30)
     last_name = models.CharField(max_length = 30)
     bio = models.TextField()
+    following = models.ManyToManyField(User,related_name='following',blank=True)
     
     @receiver(post_save, sender=User)
     def user_profile(sender,instance,created, **kwargs):

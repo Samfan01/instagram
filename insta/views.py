@@ -26,9 +26,9 @@ def new_post(request):
 
 def profile(request):
     template_name = 'profile.html'
-    images = Image.objects.filter(id)
+    # images = Image.objects.filter(id)
     
-    return render(request,template_name,{'images':images})
+    return render(request,template_name)
 
 def update_profile(request):
     model = Profile

@@ -25,7 +25,8 @@
         </div>
         {% for image in images %}
             <div class="card">
-                <h2 class="card-title">{{image.image_name}}</h2>
+                <img src="{{user.profile.profile_pic.url}}" alt="" id="prof"><h2 class="card-title" style="color: chocolate;"><strong>{{image.image_name}}</strong></h2>
+                <hr>
                 <img src="{{image.image.url}}" class="card-img-top" alt="..." height="500px" width="100%" >
                 <hr>
                 <div class="card-body">
@@ -34,7 +35,7 @@
                     <h5>Image caption : {{image.image_caption}}</h5>
                     <hr>
                     <h5>Posted : {{image.post_date}}</h5>
-                    <a href="" class=""><strong>Posted by: </strong>{{request.user.username}}</a>
+                    <a href="" class=""><strong>Posted by: </strong>{{image.user.username}}</a>
                     <hr>
                 </div>
 
