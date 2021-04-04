@@ -37,6 +37,18 @@
                     <h5>Posted : {{image.post_date}}</h5>
                     <a href="" class=""><strong>Posted by: </strong>{{image.user.first_name}}</a>
                     <hr>
+                    {% for comment in all_comments %}
+                            <div class="comments ml-4">
+                                {% if comment.image_id == image.id %}
+                                    <small>{{comment.comment}}</small>
+                                {% endif %}
+                            </div>
+                        {% endfor%}    
+                        <hr>
+                        <a href="{% url 'comment' image_id=image.id %}">Comment</a>
+                    </div>
+                </div>
+                {% endfor%}
                 </div>
 
             </div>
