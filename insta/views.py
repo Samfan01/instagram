@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse
-from .forms import ImageForm,ProfileForm
-from .models import Image,Profile
+from .forms import ImageForm,ProfileForm,CommentForm
+from .models import Image,Profile,Comment
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -12,6 +13,27 @@ def home(request):
     images = Image.get_images()
     template_name='home.html'
     return render(request,template_name,{'title':title,'images':images})
+
+def Comment(request, image_id):
+    form = CommentForm
+    image = get_object_or_404(Image, id = image_id)
+    current_user = request.user
+    image_comments = Comment.objects.filter(image=image_id)
+    
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.image = image
+            comment.commenter = current_user
+            comment.save()
+            return redirect('home')
+        else:
+            form = CommentForm()
+            
+    return render(request,'comment.html',{'image':image,'form':form,'image_comments':image_comments})
+    
+    
 
 def new_post(request):
     model = Image
