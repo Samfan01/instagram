@@ -4,6 +4,9 @@ from .forms import ImageForm,ProfileForm,CommentForm
 from .models import Image,Profile,Comment
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
+from django.http import HttpResponseRedirect
+
 
 # Create your views here.
 @login_required(login_url='/accounts/login/')

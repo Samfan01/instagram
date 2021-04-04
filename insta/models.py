@@ -51,6 +51,7 @@ class Image(models.Model):
     image_caption = models.TextField()
     image = models.ImageField(upload_to = 'insta/')
     post_date = models.DateTimeField(auto_now_add = True)
+    likes = models.PositiveIntegerField(default=0)
     
     
     
@@ -71,6 +72,10 @@ class Image(models.Model):
     def get_user_images(cls,user):
         images = cls.objects.filter(user)
         return images
+    
+    def likes_count(self):
+        total_likes = self.likes.count()
+        return total_likes
     
 class Comment(models.Model):
     comment = models.TextField()
