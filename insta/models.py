@@ -72,7 +72,7 @@ class Image(models.Model):
         images = cls.objects.filter(user)
         return images
     
-class Comments(models.Model):
+class Comment(models.Model):
     comment = models.TextField()
     image = models.ForeignKey(Image,on_delete=models.CASCADE)
     date_posted = models.DateTimeField(auto_now_add=True, null=True)

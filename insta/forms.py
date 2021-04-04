@@ -1,5 +1,5 @@
 from django import forms
-from .models import Image,Profile
+from .models import Image,Profile,Comment
 
 class ImageForm(forms.ModelForm):
     class Meta:
@@ -21,4 +21,12 @@ class ProfileForm(forms.ModelForm):
             'first_name': forms.TextInput(attrs = {'class': 'form-control'}),
             'last_name': forms.TextInput(attrs = {'class': 'form-control'}),
             'bio': forms.Textarea(attrs = {'class': 'form-control'}),
+        }
+        
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('comment')
+        widgets = {
+            'comment':forms.TextInput(attrs ={'placeholder':'add your comment','rows': 5}),
         }
