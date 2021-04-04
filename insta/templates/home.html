@@ -25,8 +25,8 @@
         </div>
         {% for image in images %}
         <div class="card">
-            <img src="{{user.profile.profile_pic.url}}" alt="" id="prof">
-            <h2 class="card-title" style="color: chocolate;"><strong>{{image.image_name}}</strong></h2>
+            <img src="{{image.profile.profile_pic.url}}" alt="" id="prof">
+            <h2 class="card-title" style="color: chocolate;"><strong>{{image.image_user}}</strong></h2>
             <hr>
             <img src="{{image.image.url}}" class="card-img-top" alt="..." height="500px" width="100%">
             <hr>
@@ -36,7 +36,7 @@
                 <h5>Image caption : {{image.image_caption}}</h5>
                 <hr>
                 <h5>Posted : {{image.post_date}}</h5>
-                <a href="" class=""><strong>Posted by: </strong>{{image.user.first_name}}</a>
+                <a href="" class=""><strong>Posted by: </strong>{{image.user.profile.first_name}}</a>
                 <hr>
                 <form action="{% url 'like_image' image.pk %}" method="post">
                     {%csrf_token%}
@@ -44,20 +44,15 @@
                         value="{{ image.id }}"><span class="glyphicon glyphicon-thumbs-up"></span> Like</button>
                 </form>
                 <p>{{image.likes}} - likes</p>
-                <p class="card-text">{{image.caption}}</p>
                 <hr>
+                <h6 class="text-center">comments</h6>
                 {% for comment in all_comments %}
                 <div class="comments ml-4">
                     {% if comment.image_id == image.id %}
-                    <small>{{comment.comment}}</small>
+                    <small><strong>{{comment.commenter}}: </strong>{{comment.comment}}</small>
+                    <hr>
                     {% endif %}
-                </div>
-
-                <hr>
-
-            
-
-       
+                </div>      
         {% endfor%}
         <a href="{% url 'comment' image_id=image.id %}">Comment</a>
 <br>

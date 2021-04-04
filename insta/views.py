@@ -13,10 +13,11 @@ from django.http import HttpResponseRedirect
 def home(request):
    
     title = 'My Own Instagram'
+    image_user = Image.user
     images = Image.get_images()
     all_comments = Comment.get_comments()
     template_name='home.html'
-    return render(request,template_name,{'title':title,'images':images,'all_comments':all_comments})
+    return render(request,template_name,{'title':title,'images':images,'all_comments':all_comments,'image_user':image_user})
 
 def Comments(request, image_id):
     form = CommentForm
@@ -46,13 +47,16 @@ def Likes(request,pk):
 def new_post(request):
     model = Image
     form = ImageForm
+    template_name = 'new_post.html',
     if request.method == 'POST':
         form = ImageForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
-    template_name = 'new_post.html',
+        return redirect('home')
+    else:
+        
     
-    return render(request,template_name,{'form':form})
+        return render(request,template_name,{'form':form})
 
 def profile(request):
     template_name = 'profile.html'
@@ -69,6 +73,7 @@ def update_profile(request):
         if form.is_valid():
             post = form.save(commit=False)      
             post.save()
+        return redirect('profile')
     else:
         form = ProfileForm
    

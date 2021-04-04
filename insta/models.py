@@ -46,7 +46,8 @@ class Profile(models.Model):
 
 
 class Image(models.Model):
-    user= models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+    profile = models.ForeignKey(Profile,on_delete=models.CASCADE,null=True)
     image_name = models.CharField(max_length = 60)
     image_caption = models.TextField()
     image = models.ImageField(upload_to = 'insta/')
