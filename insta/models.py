@@ -55,6 +55,18 @@ class Image(models.Model):
     likes = models.PositiveIntegerField(default=0)
     
     
+    # @receiver(post_save, sender=User)
+    # def user_image(sender,instance,created, **kwargs):
+    #     try:
+    #         instance.Image.save()
+    #     except ObjectDoesNotExist:
+    #         Image.objects.create(user=instance)
+            
+    # @receiver(post_save,sender=User)
+    # def save_user_image(sender,instance,**kwargs):
+    #     instance.Image.save()
+        
+    
     
     def __str__(self):
         return self.image_name

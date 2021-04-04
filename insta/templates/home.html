@@ -21,7 +21,10 @@
     <div class="col-md-3"></div>
     <div class="col-md-5">
         <div class="jumbotron">
-
+            {% for profile in profiles %}
+            
+             <img src="{{user.profile.profile_pic}}" alt="" style="height: 55px; width: 55px; border-radius: 100%;">
+            {% endfor %}
         </div>
         {% for image in images %}
         <div class="card">
@@ -36,7 +39,7 @@
                 <h5>Image caption : {{image.image_caption}}</h5>
                 <hr>
                 <h5>Posted : {{image.post_date}}</h5>
-                <a href="" class=""><strong>Posted by: </strong>{{image.user.profile.first_name}}</a>
+                <a href="" class=""><strong>Posted by: </strong>{{image.user}}</a>
                 <hr>
                 <form action="{% url 'like_image' image.pk %}" method="post">
                     {%csrf_token%}
@@ -58,9 +61,26 @@
 <br>
 </div>
 </div>
-<br>
+<br><br>
 {% endfor %}
-<div class="col-md-4"></div>
+ </div>
+<div class="col-md-4">
+    <div class="row">
+        <div class="column">
+          <div class="cards">
+            <h2 class="text-center">Suggested users</h2>
+            {% for user in users%}
+            <p>{{ user.username }}</p>
+            {% endfor %}
+           
+          </div>
+        </div>
+</div>
 
 </div>
 {% endblock %}
+
+
+
+    
+  

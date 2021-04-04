@@ -13,11 +13,12 @@ from django.http import HttpResponseRedirect
 def home(request):
    
     title = 'My Own Instagram'
-    image_user = Image.user
+    users = User.objects.all()
+    profiles = Profile.objects.all()
     images = Image.get_images()
     all_comments = Comment.get_comments()
     template_name='home.html'
-    return render(request,template_name,{'title':title,'images':images,'all_comments':all_comments,'image_user':image_user})
+    return render(request,template_name,{'title':title,'images':images,'all_comments':all_comments,'users':users,'profiles':profiles})
 
 def Comments(request, image_id):
     form = CommentForm
