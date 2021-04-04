@@ -26,7 +26,8 @@ def new_post(request):
 
 def profile(request):
     template_name = 'profile.html'
-    # images = Image.objects.filter(id)
+    
+    
     
     return render(request,template_name)
 
