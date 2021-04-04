@@ -79,13 +79,16 @@ class Comment(models.Model):
     commenter = models.ForeignKey(User,on_delete=models.CASCADE)
     
     class Meta:
-        ordering = ['date_posted']
+        ordering = ['comment']
         
     def __str__(self):
         return self.comment
     
     def save_comment(self):
         self.save()
+         
         
-    def delete_comment(self):
-        self.delete()   
+    @classmethod
+    def get_comments(cls):
+        comments = cls.objects.all()
+        return comments

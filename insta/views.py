@@ -11,10 +11,11 @@ def home(request):
    
     title = 'My Own Instagram'
     images = Image.get_images()
+    all_comments = Comment.get_comments()
     template_name='home.html'
-    return render(request,template_name,{'title':title,'images':images})
+    return render(request,template_name,{'title':title,'images':images,'all_comments':all_comments})
 
-def Comment(request, image_id):
+def Comments(request, image_id):
     form = CommentForm
     image = get_object_or_404(Image, id = image_id)
     current_user = request.user
@@ -33,7 +34,11 @@ def Comment(request, image_id):
             
     return render(request,'comment.html',{'image':image,'form':form,'image_comments':image_comments})
     
-    
+def Likes(request,pk):
+    image = get_object_or_404(Image,id=request.POST.get('image_id'))
+    image.likes = image.likes + 1
+    image.save()
+    return HttpResponseRedirect(reverse('home')) 
 
 def new_post(request):
     model = Image

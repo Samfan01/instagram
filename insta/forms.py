@@ -26,7 +26,7 @@ class ProfileForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ('comment')
+        fields = ('comment',)
         widgets = {
             'comment':forms.TextInput(attrs ={'placeholder':'add your comment','rows': 5}),
         }
