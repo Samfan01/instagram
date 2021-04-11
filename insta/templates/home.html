@@ -23,12 +23,12 @@
         <div class="jumbotron">
             {% for profile in profiles %}
             
-             <img src="{{user.profile.profile_pic}}" alt="" style="height: 55px; width: 55px; border-radius: 100%;">
+             <img src="{{user.profile_pic}}" alt="" style="height: 55px; width: 55px; border-radius: 100%;">
             {% endfor %}
         </div>
         {% for image in images %}
         <div class="card">
-            <img src="{{image.profile.profile_pic.url}}" alt="" id="prof">
+            <img src="{{image.user.user.profile.profile_pic.url}}" alt="" id="prof">
             <h2 class="card-title" style="color: chocolate;"><strong>{{image.image_user}}</strong></h2>
             <hr>
             <img src="{{image.image.url}}" class="card-img-top" alt="..." height="500px" width="100%">
