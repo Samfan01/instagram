@@ -20,15 +20,18 @@
 <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-5">
-        <div class="jumbotron">
-            {% for profile in profiles %}
+        <div class="jumbotron" id="tab">
+            {% for user in users%}
             
-             <img src="{{user.profile_pic}}" alt="" style="height: 55px; width: 55px; border-radius: 100%;">
+             <img src="{{user.profile.profile_pic.url}}" alt="" style="height: 55px; width: 55px; border-radius: 100%;">
+             <small style="text-align: center;">{{user.username}}</small>
+             
             {% endfor %}
         </div>
         {% for image in images %}
         <div class="card">
             <img src="{{image.user.user.profile.profile_pic.url}}" alt="" id="prof">
+            <small style="font-weight: bold;">{{image.user.user.username}}</small>
             <h2 class="card-title" style="color: chocolate;"><strong>{{image.image_user}}</strong></h2>
             <hr>
             <img src="{{image.image.url}}" class="card-img-top" alt="..." height="500px" width="100%">
