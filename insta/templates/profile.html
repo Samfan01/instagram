@@ -29,9 +29,46 @@
 
     </div>
     <br>
-  <div ><a href="{% url 'update_profile' %}" class="btn btn-info" id="butt">Edit Profile </a></div>
+    <div><a href="{% url 'update_profile' %}" class="btn btn-info" id="butt">Edit Profile </a></div>
 </div>
-{% for image in images %}
-<img src="{{image.image.url}}" alt="">
-{% endfor%}
-{% endblock %}
+<div class="row">
+    <h1 class="text-center">My Posts</h1>
+    <div class="col-md-4">
+        {% for image in images %}
+<div class="card">
+    <h2 class="card-title" style="color: chocolate;"><strong>{{image.image_user}}</strong></h2>
+    <hr>
+    <img src="{{image.image.url}}" class="card-img-top" alt="..." height="500px" width="100%">
+    <hr>
+    <div class="card-body">
+        <p class="card-text"></p>
+        <hr>
+        <h5>Image caption : {{image.image_caption}}</h5>
+        <hr>
+        <h5>Posted : {{image.post_date}}</h5>
+        <a href="" class=""><strong>Posted by: </strong>{{image.user}}</a>
+        <hr>
+        <form action="{% url 'like_image' image.pk %}" method="post">
+            {%csrf_token%}
+            <button class="btn btn-default btn-sm" type="submit" name="image_id" value="{{ image.id }}"><span
+                    class="glyphicon glyphicon-thumbs-up"></span> Like</button>
+        </form>
+        <p>{{image.likes}} - likes</p>
+        <hr>
+        <h6 class="text-center">comments</h6>
+        {% for comment in all_comments %}
+        <div class="comments ml-4">
+            {% if comment.image_id == image.id %}
+            <small><strong>{{comment.commenter}}: </strong>{{comment.comment}}</small>
+            <hr>
+            {% endif %}
+        </div>
+        {% endfor %}
+        {% endfor %}
+        {% endblock %}
+
+    </div>
+
+</div>
+
+        

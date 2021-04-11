@@ -11,3 +11,10 @@
     font-weight: bold;
     
 }
+.card{
+    border: solid black 1px;
+    padding-left: 7px;
+    padding: 10px;
+    box-shadow: 5px 10px 8px 10px #888888;
+
+}

@@ -8,7 +8,7 @@ from django.core.exceptions import ObjectDoesNotExist
 # Create your models here.
 
 class Profile(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE,related_name='profile',null=True)
+    user = models.OneToOneField(User,on_delete=models.CASCADE,related_name='profile')
     profile_pic = models.ImageField(upload_to = 'profile/',null=True,blank=True,default='download.jpeg')
     first_name = models.CharField(max_length = 30)
     last_name = models.CharField(max_length = 30)
@@ -46,27 +46,12 @@ class Profile(models.Model):
 
 
 class Image(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
-    profile = models.ForeignKey(Profile,on_delete=models.CASCADE,null=True)
+    user = models.ForeignKey('Profile',on_delete=models.CASCADE,related_name='image')
     image_name = models.CharField(max_length = 60)
     image_caption = models.TextField()
     image = models.ImageField(upload_to = 'insta/')
     post_date = models.DateTimeField(auto_now_add = True)
     likes = models.PositiveIntegerField(default=0)
-    
-    
-    # @receiver(post_save, sender=User)
-    # def user_image(sender,instance,created, **kwargs):
-    #     try:
-    #         instance.Image.save()
-    #     except ObjectDoesNotExist:
-    #         Image.objects.create(user=instance)
-            
-    # @receiver(post_save,sender=User)
-    # def save_user_image(sender,instance,**kwargs):
-    #     instance.Image.save()
-        
-    
     
     def __str__(self):
         return self.image_name
@@ -81,11 +66,7 @@ class Image(models.Model):
         images = cls.objects.all()
         return images
     
-    @classmethod
-    def get_user_images(cls,user):
-        images = cls.objects.filter(user)
-        return images
-    
+      
     def likes_count(self):
         total_likes = self.likes.count()
         return total_likes

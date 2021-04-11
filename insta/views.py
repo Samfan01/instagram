@@ -11,7 +11,7 @@ from django.http import HttpResponseRedirect
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def home(request):
-   
+    
     title = 'My Own Instagram'
     users = User.objects.all()
     profiles = Profile.objects.all()
@@ -52,6 +52,8 @@ def new_post(request):
     if request.method == 'POST':
         form = ImageForm(request.POST,request.FILES)
         if form.is_valid():
+            form = form.save(commit=False)
+            form.user = request.user.profile
             form.save()
         return redirect('home')
     else:
@@ -61,10 +63,10 @@ def new_post(request):
 
 def profile(request):
     template_name = 'profile.html'
+    images = request.user.profile.image.all()
     
     
-    
-    return render(request,template_name)
+    return render(request,template_name,{'images':images})
 
 def update_profile(request):
     model = Profile

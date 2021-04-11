@@ -39,7 +39,7 @@
                 <h5>Image caption : {{image.image_caption}}</h5>
                 <hr>
                 <h5>Posted : {{image.post_date}}</h5>
-                <a href="" class=""><strong>Posted by: </strong>{{image.user}}</a>
+                <a href="" class=""><strong>Posted by: </strong>{{image.user.user.username}}</a>
                 <hr>
                 <form action="{% url 'like_image' image.pk %}" method="post">
                     {%csrf_token%}
@@ -68,7 +68,7 @@
     <div class="row">
         <div class="column">
           <div class="cards">
-            <h2 class="text-center">Suggested users</h2>
+            <h2 class="text-center">Insta-Age users</h2>
             {% for user in users%}
             <p>{{ user.username }}</p>
             {% endfor %}
